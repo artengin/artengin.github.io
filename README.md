@@ -3,7 +3,7 @@
 An interactive terminal-style portfolio designed as an alternative to traditional websites.  
 The project mimics a command-line interface with custom navigation commands.  
 
-#### Live demo: [DEMO](https://art.osepyan.ru/)  
+#### Live demo: [DEMO](https://artengin.github.io/)  
 
 ## Features  
 
