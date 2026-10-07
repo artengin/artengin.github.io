@@ -9,10 +9,12 @@ function startTerminal() {
     function setLang() {
         if (localStorage.getItem("lang") == "en") {
             lang = "en";
+            document.documentElement.lang = "en";
             title.innerHTML = "Portfolio Terminal of Artem Osepyan";
             description.setAttribute("content", "An interactive terminal-style portfolio that simulates a command-line interface with custom navigation commands.");
         } else {
             lang = "ru";
+            document.documentElement.lang = "ru";
             title.innerHTML = "Портфолио Терминал Осепян Артема";
             description.setAttribute("content", "Интерактивный терминал-портфолио, имитирует работу командной строки с набором пользовательских команд для навигации.");
         }
@@ -225,14 +227,15 @@ function startTerminal() {
         const cowsay = document.createElement('div');
         cowsay.classList.add("command-div");
         cowsay.classList.add("cowsay");
-        cowsayValue = "cowsay " + value;
+        const cowsayValue = "cowsay " + value;
         await fetch('includes/cowsay.html')
         .then(response => response.text())
         .then(html => {
             cowsay.innerHTML = `
             ${commandHistory(cowsayValue)}
-            <p>________________________</p>
-            <p>< ${value} ></p>
+            <pre> ${"_".repeat(value.length + 2)}
+&lt; ${value} &gt;
+ ${"-".repeat(value.length + 2)}</pre>
             ${html}`;
         })
         .catch(error => {
@@ -420,11 +423,9 @@ function startTerminal() {
     ]
     function runCommand(value) {
         if (value.slice(0, 7) == "cowsay " && value.length > 7) {
-            let cowValue;
-            if (value.length > 24) {
-                cowValue = value.slice(7, 24) + "...";
-            } else {
-                cowValue = value.slice(7);
+            let cowValue = value.slice(7);
+            if (cowValue.length > 24) {
+                cowValue = cowValue.slice(0, 24) + "...";
             }
             cowsayOutput(cowValue);
             queryHistory.push(value);

@@ -128,10 +128,6 @@ body#ubuntu {
 
 form div{
     width: 100%;  
-}
-
-form div{
-    width: 100%;  
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
@@ -183,7 +179,6 @@ form input {
 
 .welcome-name {
     font-size: 0.7em;
-    margin: 0;
     margin: 0 0 40px;
 }
 
@@ -221,8 +216,8 @@ form .input {
 
 @media (max-width: 1200px){
     .welcome-name {
-        font-size: 0.6em;  margin:
-        0 0 30px;
+        font-size: 0.6em;
+        margin: 0 0 30px;
     }
     .welcome-img {
         font-size: 0.4em;
