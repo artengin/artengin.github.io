@@ -422,26 +422,33 @@ function startTerminal() {
         ["projects go 3", projects3],
         ["about", about]
     ]
-    function runCommand(value) {
-        if (value.slice(0, 7) == "cowsay " && value.length > 7) {
+    let historyPosition = queryHistory.length;
+
+    function runCommand(input) {
+        const value = input.trim();
+        if (value === '') {
+            displayCommand('');
+            clearInput();
+            return;
+        }
+        queryHistory.push(value);
+        historyPosition = queryHistory.length;
+        if (value.slice(0, 7).toLowerCase() == "cowsay " && value.length > 7) {
             let cowValue = value.slice(7);
             if (cowValue.length > 24) {
                 cowValue = cowValue.slice(0, 24) + "...";
             }
             cowsayOutput(cowValue);
-            queryHistory.push(value);
             clearInput();
             return;
         }
-        const currentValue = value;
+        const currentValue = value.toLowerCase();
         const command = commands.find(cmd => cmd[0] === currentValue);
 
         if (command) {
-            queryHistory.push(value);
             command[1]();
             clearInput();
         } else {
-            queryHistory.push(value);
             notFound(value);
             clearInput();
         }
@@ -454,39 +461,29 @@ function startTerminal() {
         }
     });
 
-    let index = 1;
     inputField.addEventListener('keydown', function(event) {
-        output.textContent = ''; 
-        if (inputField.value == '') {
-            index = 1;
-        }
+        output.textContent = '';
         if (event.key === 'ArrowUp') {
-            let position = queryHistory.length - index;
-            if (position == 0) {
-                inputField.value = queryHistory[position]; 
+            if (historyPosition > 0) {
+                historyPosition--;
+                inputField.value = queryHistory[historyPosition];
                 setTimeout(() => {
                     inputField.setSelectionRange(inputField.value.length, inputField.value.length);
                 }, 0);
-            } else if (position > 0) {
-                inputField.value = queryHistory[position]; 
-                index++;
-                setTimeout(() => {
-                    inputField.setSelectionRange(inputField.value.length, inputField.value.length);
-                }, 0);
-            };
+            }
         }
         if (event.key === 'ArrowDown') {
-            if (index > 1) {
-                index--;
-                let position = queryHistory.length - index;
-                inputField.value = queryHistory[position]; 
+            if (historyPosition < queryHistory.length - 1) {
+                historyPosition++;
+                inputField.value = queryHistory[historyPosition];
             } else {
+                historyPosition = queryHistory.length;
                 inputField.value = '';
-            };
+            }
         }
         if (event.key === 'Enter') {
             event.preventDefault();
-            runCommand(inputField.value.trimEnd());
+            runCommand(inputField.value);
         }
 
         if (event.key === 'Tab') {
