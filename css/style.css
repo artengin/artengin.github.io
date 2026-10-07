@@ -90,6 +90,10 @@ body#ubuntu {
     display: inline-block;
 }
 
+[data-command] {
+    cursor: pointer;
+}
+
 .command-div {
     margin-top: 20px;
 }
