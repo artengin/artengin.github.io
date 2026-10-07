@@ -9,10 +9,12 @@ function startTerminal() {
     function setLang() {
         if (localStorage.getItem("lang") == "en") {
             lang = "en";
+            document.documentElement.lang = "en";
             title.innerHTML = "Portfolio Terminal of Artem Osepyan";
             description.setAttribute("content", "An interactive terminal-style portfolio that simulates a command-line interface with custom navigation commands.");
         } else {
             lang = "ru";
+            document.documentElement.lang = "ru";
             title.innerHTML = "Портфолио Терминал Осепян Артема";
             description.setAttribute("content", "Интерактивный терминал-портфолио, имитирует работу командной строки с набором пользовательских команд для навигации.");
         }
@@ -23,8 +25,10 @@ function startTerminal() {
         inputField.focus();
     });
 
+    const isTouchScreen = window.matchMedia('(pointer: coarse)').matches;
+
     document.addEventListener('click', (event) => {
-      if (event.target !== inputField) {
+      if (event.target !== inputField && !(isTouchScreen && event.target.closest('[data-command]'))) {
         inputField.focus();
       }
     });
@@ -88,13 +92,13 @@ function startTerminal() {
 
     function clearInput() {
         inputField.value = "";
-        inputField.focus();
         window.scrollTo(0, document.body.scrollHeight);
     }
     
     async function welcome() {
         const welcome = document.createElement('div');
         welcome.classList.add("command-div");
+        terminal.appendChild(welcome);
         let path;
         if (lang == "ru") {
             path = 'includes/welcome.html';
@@ -109,7 +113,6 @@ function startTerminal() {
         .catch(error => {
             console.error('Ошибка загрузки welcome.html:', error);
         });
-        terminal.appendChild(welcome); 
         inputField.focus();
         window.scrollTo(0, document.body.scrollHeight);
     }
@@ -120,17 +123,17 @@ function startTerminal() {
         help.classList.add("command-div");
         help.innerHTML = `
         ${commandHistory("help")}
-        <p><span class="command styleTwo">about</span> - ${lang == "ru" ? "об авторе" : "about the author"}</p>
-        <p><span class="command styleTwo">clear</span> - ${lang == "ru" ? "очистить терминал" : "clear the terminal" }</p>
-        <p><span class="command styleTwo">contacts</span> - ${lang == "ru" ? "просмотреть контакты автора" : "check contacts"}</p>
-        <p><span class="command styleTwo">cowsay</span> - ${lang == "ru" ? "вывести сообщение в стиле cowsay" : "display a cowsay-style message"}</p>
-        <p><span class="command styleTwo">help</span> -  ${lang == "ru" ? "посмотреть список доступных команд" : "check available commands"}</p>
-        <p><span class="command styleTwo">history</span> - ${lang == "ru" ? "просмотреть историю команд" : "view command history"}</p>
-        <p><span class="command styleTwo">language</span> - ${lang == "ru" ? "сменить язык интерфейса" : "change interface language"}</p>
-        <p><span class="command styleTwo">projects</span> - ${lang == "ru" ? "просмотреть проекты автора" : "view projects"}</p>
-        <p><span class="command styleTwo">themes</span> -  ${lang == "ru" ? "просмотреть доступные темы" : "check available themes"}</p>
-        <p><span class="command styleTwo">welcome</span> -  ${lang == "ru" ? "показать блок приветствия" : "display a welcome screen"}</p>
-        <p><span class="command styleTwo">whoami</span> -  ${lang == "ru" ? "информация о текущем пользователе" : "about current user"}</p>
+        <p><span class="command styleTwo" data-command="about">about</span> - ${lang == "ru" ? "об авторе" : "about the author"}</p>
+        <p><span class="command styleTwo" data-command="clear">clear</span> - ${lang == "ru" ? "очистить терминал" : "clear the terminal" }</p>
+        <p><span class="command styleTwo" data-command="contacts">contacts</span> - ${lang == "ru" ? "просмотреть контакты автора" : "check contacts"}</p>
+        <p><span class="command styleTwo" data-command="cowsay">cowsay</span> - ${lang == "ru" ? "вывести сообщение в стиле cowsay" : "display a cowsay-style message"}</p>
+        <p><span class="command styleTwo" data-command="help">help</span> -  ${lang == "ru" ? "посмотреть список доступных команд" : "check available commands"}</p>
+        <p><span class="command styleTwo" data-command="history">history</span> - ${lang == "ru" ? "просмотреть историю команд" : "view command history"}</p>
+        <p><span class="command styleTwo" data-command="language">language</span> - ${lang == "ru" ? "сменить язык интерфейса" : "change interface language"}</p>
+        <p><span class="command styleTwo" data-command="projects">projects</span> - ${lang == "ru" ? "просмотреть проекты автора" : "view projects"}</p>
+        <p><span class="command styleTwo" data-command="themes">themes</span> -  ${lang == "ru" ? "просмотреть доступные темы" : "check available themes"}</p>
+        <p><span class="command styleTwo" data-command="welcome">welcome</span> -  ${lang == "ru" ? "показать блок приветствия" : "display a welcome screen"}</p>
+        <p><span class="command styleTwo" data-command="whoami">whoami</span> -  ${lang == "ru" ? "информация о текущем пользователе" : "about current user"}</p>
         <p style="margin-top: 15px"><span class="command">Tab</span> =>  ${lang == "ru" ? "автоматически дополняет команду" : "autocompletes the command"}</p>
         <p><span class="command">${lang == "ru" ? "Стрелка вверх" : "Up Arrow"}</span> =>  ${lang == "ru" ? "вернуться к предыдущей команде" : "go back to previous command"}</p>
         `;
@@ -171,9 +174,9 @@ function startTerminal() {
         contacts.innerHTML = `
         ${commandHistory("contacts")}
         <p style="margin-bottom: 10px">${lang == "ru" ? "Контакты" : "Contacts"}:</p>
-        <p><span class="command styleTwo">1. Github</span> - https://github.com/artengin/</p>
-        <p><span class="command styleTwo">2. E-mail</span> - art@osepyan.ru</p>
-        <p><span class="command styleTwo">3. Telegram</span> - https://t.me/artengin</p>
+        <p><span class="command styleTwo" data-command="contacts go 1">1. Github</span> - https://github.com/artengin/</p>
+        <p><span class="command styleTwo" data-command="contacts go 2">2. E-mail</span> - art@osepyan.ru</p>
+        <p><span class="command styleTwo" data-command="contacts go 3">3. Telegram</span> - https://t.me/artengin</p>
         <p style="margin: 15px 0 0">${lang == "ru" ? "Использование" : "Usage"}: contacts go &lt;contacts-number&gt; </p>
         <p style="margin: 0">${lang == "ru" ? "Пример" : "Example"}: contacts go 1</p>
         `;
@@ -218,27 +221,27 @@ function startTerminal() {
         <p>${lang == "ru" ? "Пример" : "Example"}: cowsay Hello world</p>
         `;
        terminal.appendChild(cowsay); 
-       inputField.focus();
        window.scrollTo(0, document.body.scrollHeight);
     }
 
-    async function cowsayOutput(value) {
+    const cowTemplate = `<pre aria-hidden="true">
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||
+</pre>`;
+
+    function cowsayOutput(value) {
         const cowsay = document.createElement('div');
         cowsay.classList.add("command-div");
         cowsay.classList.add("cowsay");
-        cowsayValue = "cowsay " + value;
-        await fetch('includes/cowsay.html')
-        .then(response => response.text())
-        .then(html => {
-            cowsay.innerHTML = `
-            ${commandHistory(cowsayValue)}
-            <p>________________________</p>
-            <p>< ${value} ></p>
-            ${html}`;
-        })
-        .catch(error => {
-            console.error('Ошибка загрузки cowsay.html:', error);
-        });
+        cowsay.innerHTML = `
+        ${commandHistory("cowsay " + value)}
+        <pre> ${"_".repeat(value.length + 2)}
+&lt; ${value} &gt;
+ ${"-".repeat(value.length + 2)}</pre>
+        ${cowTemplate}`;
         terminal.appendChild(cowsay);
     }
 
@@ -248,7 +251,7 @@ function startTerminal() {
         themes.classList.add("themes");
         themes.innerHTML = `
         ${commandHistory('themes')}
-        <span class="pre">dark  light  blue-matrix  espresso  green-goblin  ubuntu</span>
+        <span class="pre">${["dark", "light", "blue-matrix", "espresso", "green-goblin", "ubuntu"].map(name => `<span data-command="themes set ${name}">${name}</span>`).join("  ")}</span>
         <p>${lang == "ru" ? "Использование" : "Usage"}: themes set &lt;theme-name&gt; </p>
         <p>${lang == "ru" ? "Пример" : "Example"}: themes set espresso</p>
         `;
@@ -276,15 +279,15 @@ function startTerminal() {
         ${commandHistory('projects')}
         <p>${lang == "ru" ? "Вот некоторые из моих проектов" : "Featured projects"}:</p>
         <div>
-            <p><b><span class="styleTwo">1.</span> ${lang == "ru" ? "Интерактивные метки на изображении" : "Interactive image labels"}</b></p>
+            <p><b data-command="projects go 1"><span class="styleTwo">1.</span> ${lang == "ru" ? "Интерактивные метки на изображении" : "Interactive image labels"}</b></p>
             <p>${lang == "ru" ? "Плагин для создания интерактивных тегов на изображении JS / CSS / HTML" : "A JavaScript plugin to add interactive tags/labels to images. Lightweight, customizable (HTML5/CSS3)"}</p>
         </div>
         <div>
-            <p><b><span class="styleTwo">2.</span> ${lang == "ru" ? "Сортировка массивов" : "Array sorting"}</b></p>
+            <p><b data-command="projects go 2"><span class="styleTwo">2.</span> ${lang == "ru" ? "Сортировка массивов" : "Array sorting"}</b></p>
             <p>${lang == "ru" ? "Интерактивная визуализация алгоритмов сортировки с помощью JavaScript и HTML Canvas" : "Interactive visualization of sorting algorithms using JavaScript and HTML Canvas"}</p>
         </div>
         <div>
-            <p><b><span class="styleTwo">3.</span> ${lang == "ru" ? "Судоку" : "Sudoku"}</b></p>
+            <p><b data-command="projects go 3"><span class="styleTwo">3.</span> ${lang == "ru" ? "Судоку" : "Sudoku"}</b></p>
             <p>${lang == "ru" ? "Реализация игры Судоку на JavaScript с возможностью выбора 6 уровней сложности и проверки решений (JS / CSS / HTML)" : "Implementation of the game Sudoku in JavaScript with the ability to choose 6 levels of complexity and check solutions (JS / CSS / HTML)"}</p>
         </div>
         <p>${lang == "ru" ? "Использование" : "Usage"}: projects go &lt;project-number&gt; </p>
@@ -354,8 +357,8 @@ function startTerminal() {
         language.classList.add("command-list");
         language.innerHTML = `
         ${commandHistory('language')}
-        <p><span class="styleTwo">En</span> - ${lang == "ru" ? "Английский" : "English"}</p>
-        <p><span class="styleTwo">Ru</span> - ${lang == "ru" ? "Русский" : "Russian"}</p>
+        <p><span class="styleTwo" data-command="language set en">En</span> - ${lang == "ru" ? "Английский" : "English"}</p>
+        <p><span class="styleTwo" data-command="language set ru">Ru</span> - ${lang == "ru" ? "Русский" : "Russian"}</p>
         <p style="margin: 15px 0 0">${lang == "ru" ? "Использование" : "Usage"}: language set &lt;en|ru&gt; </p>
         <p style="margin: 0">${lang == "ru" ? "Пример" : "Example"}: language set en</p>`;
         terminal.appendChild(language); 
@@ -420,6 +423,44 @@ function startTerminal() {
         ["about", about]
     ]
     let historyPosition = queryHistory.length;
+
+    function runCommand(input) {
+        const value = input.trim();
+        if (value === '') {
+            displayCommand('');
+            clearInput();
+            return;
+        }
+        queryHistory.push(value);
+        historyPosition = queryHistory.length;
+        if (value.slice(0, 7).toLowerCase() == "cowsay " && value.length > 7) {
+            let cowValue = value.slice(7);
+            if (cowValue.length > 24) {
+                cowValue = cowValue.slice(0, 24) + "...";
+            }
+            cowsayOutput(cowValue);
+            clearInput();
+            return;
+        }
+        const currentValue = value.toLowerCase();
+        const command = commands.find(cmd => cmd[0] === currentValue);
+
+        if (command) {
+            command[1]();
+            clearInput();
+        } else {
+            notFound(value);
+            clearInput();
+        }
+    }
+
+    terminal.addEventListener('click', (event) => {
+        const commandElement = event.target.closest('[data-command]');
+        if (commandElement && event.detail === 1 && window.getSelection().isCollapsed) {
+            runCommand(commandElement.dataset.command);
+        }
+    });
+
     inputField.addEventListener('keydown', function(event) {
         output.textContent = '';
         if (event.key === 'ArrowUp') {
@@ -442,35 +483,7 @@ function startTerminal() {
         }
         if (event.key === 'Enter') {
             event.preventDefault();
-            let value = inputField.value.trim();
-            if (value === '') {
-                displayCommand('');
-                clearInput();
-                return;
-            }
-            queryHistory.push(value);
-            historyPosition = queryHistory.length;
-            if (value.slice(0, 7).toLowerCase() == "cowsay " && value.length > 7) {
-                let cowValue;
-                if (value.length > 24) {
-                    cowValue = value.slice(7, 24) + "...";
-                } else {
-                    cowValue = value.slice(7);
-                }
-                cowsayOutput(cowValue);
-                clearInput();
-                return;
-            }
-            const currentValue = value.toLowerCase();
-            const command = commands.find(cmd => cmd[0] === currentValue);
-
-            if (command) {
-                command[1]();
-                clearInput();
-            } else {
-                notFound(value);
-                clearInput();
-            }
+            runCommand(inputField.value);
         }
 
         if (event.key === 'Tab') {
