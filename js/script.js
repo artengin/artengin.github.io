@@ -9,10 +9,12 @@ function startTerminal() {
     function setLang() {
         if (localStorage.getItem("lang") == "en") {
             lang = "en";
+            document.documentElement.lang = "en";
             title.innerHTML = "Portfolio Terminal of Artem Osepyan";
             description.setAttribute("content", "An interactive terminal-style portfolio that simulates a command-line interface with custom navigation commands.");
         } else {
             lang = "ru";
+            document.documentElement.lang = "ru";
             title.innerHTML = "Портфолио Терминал Осепян Артема";
             description.setAttribute("content", "Интерактивный терминал-портфолио, имитирует работу командной строки с набором пользовательских команд для навигации.");
         }
