@@ -95,6 +95,7 @@ function startTerminal() {
     async function welcome() {
         const welcome = document.createElement('div');
         welcome.classList.add("command-div");
+        terminal.appendChild(welcome);
         let path;
         if (lang == "ru") {
             path = 'includes/welcome.html';
@@ -109,7 +110,6 @@ function startTerminal() {
         .catch(error => {
             console.error('Ошибка загрузки welcome.html:', error);
         });
-        terminal.appendChild(welcome); 
         inputField.focus();
         window.scrollTo(0, document.body.scrollHeight);
     }
@@ -222,23 +222,24 @@ function startTerminal() {
        window.scrollTo(0, document.body.scrollHeight);
     }
 
-    async function cowsayOutput(value) {
+    const cowTemplate = `<pre>
+------------------------
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||
+</pre>`;
+
+    function cowsayOutput(value) {
         const cowsay = document.createElement('div');
         cowsay.classList.add("command-div");
         cowsay.classList.add("cowsay");
-        cowsayValue = "cowsay " + value;
-        await fetch('includes/cowsay.html')
-        .then(response => response.text())
-        .then(html => {
-            cowsay.innerHTML = `
-            ${commandHistory(cowsayValue)}
-            <p>________________________</p>
-            <p>< ${value} ></p>
-            ${html}`;
-        })
-        .catch(error => {
-            console.error('Ошибка загрузки cowsay.html:', error);
-        });
+        cowsay.innerHTML = `
+        ${commandHistory("cowsay " + value)}
+        <p>________________________</p>
+        <p>< ${value} ></p>
+        ${cowTemplate}`;
         terminal.appendChild(cowsay);
     }
 
