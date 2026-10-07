@@ -24,7 +24,7 @@ function startTerminal() {
     });
 
     document.addEventListener('click', (event) => {
-      if (event.target !== inputField) {
+      if (event.target !== inputField && window.getSelection().isCollapsed) {
         inputField.focus();
       }
     });
@@ -171,9 +171,9 @@ function startTerminal() {
         contacts.innerHTML = `
         ${commandHistory("contacts")}
         <p style="margin-bottom: 10px">${lang == "ru" ? "Контакты" : "Contacts"}:</p>
-        <p><span class="command styleTwo">1. Github</span> - https://github.com/artengin/</p>
-        <p><span class="command styleTwo">2. E-mail</span> - art@osepyan.ru</p>
-        <p><span class="command styleTwo">3. Telegram</span> - https://t.me/artengin</p>
+        <p><span class="command styleTwo">1. Github</span> - <a href="https://github.com/artengin/" target="_blank" rel="noopener" class="styleOne">https://github.com/artengin/</a></p>
+        <p><span class="command styleTwo">2. E-mail</span> - <a href="mailto:art@osepyan.ru" class="styleOne">art@osepyan.ru</a></p>
+        <p><span class="command styleTwo">3. Telegram</span> - <a href="https://t.me/artengin" target="_blank" rel="noopener" class="styleOne">https://t.me/artengin</a></p>
         <p style="margin: 15px 0 0">${lang == "ru" ? "Использование" : "Usage"}: contacts go &lt;contacts-number&gt; </p>
         <p style="margin: 0">${lang == "ru" ? "Пример" : "Example"}: contacts go 1</p>
         `;
