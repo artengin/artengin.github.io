@@ -226,7 +226,7 @@ function startTerminal() {
         const cowsay = document.createElement('div');
         cowsay.classList.add("command-div");
         cowsay.classList.add("cowsay");
-        cowsayValue = "cowsay " + value;
+        const cowsayValue = "cowsay " + value;
         await fetch('includes/cowsay.html')
         .then(response => response.text())
         .then(html => {
