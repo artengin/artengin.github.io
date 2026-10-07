@@ -232,8 +232,9 @@ function startTerminal() {
         .then(html => {
             cowsay.innerHTML = `
             ${commandHistory(cowsayValue)}
-            <p>________________________</p>
-            <p>< ${value} ></p>
+            <pre> ${"_".repeat(value.length + 2)}
+&lt; ${value} &gt;
+ ${"-".repeat(value.length + 2)}</pre>
             ${html}`;
         })
         .catch(error => {
@@ -453,11 +454,9 @@ function startTerminal() {
             event.preventDefault();
             let value = inputField.value.trimEnd();
             if (value.slice(0, 7) == "cowsay " && value.length > 7) {
-                let cowValue;
-                if (value.length > 24) {
-                    cowValue = value.slice(7, 24) + "...";
-                } else {
-                    cowValue = value.slice(7);
+                let cowValue = value.slice(7);
+                if (cowValue.length > 24) {
+                    cowValue = cowValue.slice(0, 24) + "...";
                 }
                 cowsayOutput(cowValue);
                 queryHistory.push(value);
