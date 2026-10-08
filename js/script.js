@@ -279,15 +279,15 @@ function startTerminal() {
         ${commandHistory('projects')}
         <p>${lang == "ru" ? "Вот некоторые из моих проектов" : "Featured projects"}:</p>
         <div>
-            <p><b data-command="projects go 1"><span class="styleTwo">1.</span> ${lang == "ru" ? "Интерактивные метки на изображении" : "Interactive image labels"}</b></p>
+            <p><b class="styleTwo" data-command="projects go 1">1. ${lang == "ru" ? "Интерактивные метки на изображении" : "Interactive image labels"}</b></p>
             <p>${lang == "ru" ? "Плагин для создания интерактивных тегов на изображении JS / CSS / HTML" : "A JavaScript plugin to add interactive tags/labels to images. Lightweight, customizable (HTML5/CSS3)"}</p>
         </div>
         <div>
-            <p><b data-command="projects go 2"><span class="styleTwo">2.</span> ${lang == "ru" ? "Сортировка массивов" : "Array sorting"}</b></p>
+            <p><b class="styleTwo" data-command="projects go 2">2. ${lang == "ru" ? "Сортировка массивов" : "Array sorting"}</b></p>
             <p>${lang == "ru" ? "Интерактивная визуализация алгоритмов сортировки с помощью JavaScript и HTML Canvas" : "Interactive visualization of sorting algorithms using JavaScript and HTML Canvas"}</p>
         </div>
         <div>
-            <p><b data-command="projects go 3"><span class="styleTwo">3.</span> ${lang == "ru" ? "Судоку" : "Sudoku"}</b></p>
+            <p><b class="styleTwo" data-command="projects go 3">3. ${lang == "ru" ? "Судоку" : "Sudoku"}</b></p>
             <p>${lang == "ru" ? "Реализация игры Судоку на JavaScript с возможностью выбора 6 уровней сложности и проверки решений (JS / CSS / HTML)" : "Implementation of the game Sudoku in JavaScript with the ability to choose 6 levels of complexity and check solutions (JS / CSS / HTML)"}</p>
         </div>
         <p>${lang == "ru" ? "Использование" : "Usage"}: projects go &lt;project-number&gt; </p>
