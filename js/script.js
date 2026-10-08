@@ -309,17 +309,17 @@ function startTerminal() {
     }
 
     function projects1() {
-        window.open("https://art.osepyan.ru/arpic/", '_blank');
+        window.open("https://artengin.github.io/arpic-template/", '_blank');
         displayCommand("projects go 1");
     }
 
     function projects2() {
-        window.open("https://art.osepyan.ru/array-sorting/", '_blank');
+        window.open("https://artengin.github.io/array-sorting/", '_blank');
         displayCommand("projects go 2");
     }
 
     function projects3() {
-        window.open("https://art.osepyan.ru/sudoku/", '_blank');
+        window.open("https://artengin.github.io/sudoku/", '_blank');
         displayCommand("projects go 3");
     }
 
