@@ -10,7 +10,7 @@ function startTerminal() {
         if (localStorage.getItem("lang") == "en") {
             lang = "en";
             document.documentElement.lang = "en";
-            title.innerHTML = "Portfolio Terminal of Artem Osepyan";
+            title.innerHTML = "Portfolio Terminal of Artyom Osepyan";
             description.setAttribute("content", "An interactive terminal-style portfolio that simulates a command-line interface with custom navigation commands.");
         } else {
             lang = "ru";
