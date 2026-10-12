@@ -11,7 +11,7 @@ The project mimics a command-line interface with custom navigation commands.
 - Command history (Up/Down arrows)  
 - Dual-language support (English/Russian)  
 - 6 customizable color themes  
-- Commands for viewing info, projects and contacts  
+- Commands for viewing info, projects, contacts and the blog  
 - Interactive elements (cowsay, theme switching)  
 - Responsive design  
 

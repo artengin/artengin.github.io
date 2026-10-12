@@ -8,12 +8,14 @@ function startTerminal() {
 
     const translations = {
         ru: {
-            "page.title": "Портфолио Терминал Осепян Артема",
+            "page.title": "Портфолио Терминал Артёма Осепяна",
             "page.description": "Интерактивный терминал-портфолио, имитирует работу командной строки с набором пользовательских команд для навигации.",
-            "welcome.greeting": "Добро пожаловать на мой сайт портфолио. (Версия 1.1.0)",
+            "welcome.greeting": "Добро пожаловать на мой сайт портфолио. (Версия 1.2.0)",
             "welcome.source": "Исходный код этого проекта можно посмотреть в репозитории на",
+            "welcome.blog": "Чтобы открыть мой блог, введите",
             "welcome.help": "Чтобы посмотреть список доступных команд, введите",
             "help.about": "об авторе",
+            "help.blog": "открыть блог автора",
             "help.clear": "очистить терминал",
             "help.contacts": "просмотреть контакты автора",
             "help.cowsay": "вывести сообщение в стиле cowsay",
@@ -32,28 +34,25 @@ function startTerminal() {
             "commandNotFound": "Команда не найдена",
             "contacts.title": "Контакты",
             "projects.title": "Вот некоторые из моих проектов",
-            "projects.arpic.title": "Интерактивные метки на изображении",
-            "projects.arpic.shortTitle": "Интерактивные метки",
-            "projects.arpic.description": "Плагин для создания интерактивных тегов на изображении JS / CSS / HTML",
-            "projects.arraySorting.title": "Сортировка массивов",
-            "projects.arraySorting.shortTitle": "Сортировка массивов",
-            "projects.arraySorting.description": "Интерактивная визуализация алгоритмов сортировки с помощью JavaScript и HTML Canvas",
-            "projects.sudoku.title": "Судоку",
-            "projects.sudoku.shortTitle": "Судоку",
-            "projects.sudoku.description": "Реализация игры Судоку на JavaScript с возможностью выбора 6 уровней сложности и проверки решений (JS / CSS / HTML)",
-            "about.greeting": "Привет! Меня зовут Осепян Артем!",
-            "about.role": "Я <b>Full-stack разработчик</b>, с большим опытом создания веб-приложений.",
-            "about.values": "Люблю, когда код чистый, интерфейс — понятный, а backend — как швейцарские часы.",
+            "projects.claudeStarred.description": "Закладки для сессий Claude Code: отмеченные сессии не удаляются автоматической очисткой и открываются из компактного дерева в терминале (Go)",
+            "projects.pintArtisan.description": "Запуск Laravel Pint через Artisan командой php artisan pint со всеми аргументами и флагами (PHP / Laravel)",
+            "projects.larabuilder.description": "Пакет для программного изменения PHP-классов в Laravel-проектах: свойства, методы, импорты, трейты (PHP / Laravel)",
+            "projects.projectCreate.description": "Создание нового Laravel-проекта одной командой: окружение полностью в Docker, локально нужны только Docker и cURL (Shell / Docker)",
+            "about.greeting": "Привет! Меня зовут Артём Осепян!",
+            "about.role": "Я <b>backend-разработчик</b>, контрибьютор Laravel и open-source пакетов.",
+            "about.experience": "Имею большой опыт создания веб-приложений и серверной логики. Постоянно осваиваю новые подходы и технологии.",
             "language.en": "Английский",
             "language.ru": "Русский",
         },
         en: {
             "page.title": "Portfolio Terminal of Artyom Osepyan",
             "page.description": "An interactive terminal-style portfolio that simulates a command-line interface with custom navigation commands.",
-            "welcome.greeting": "Welcome to my portfolio website. (Version 1.1.0)",
+            "welcome.greeting": "Welcome to my portfolio website. (Version 1.2.0)",
             "welcome.source": "The source code for this project is available in the repository on",
+            "welcome.blog": "To open my blog, type",
             "welcome.help": "For a list of available commands, type",
             "help.about": "about the author",
+            "help.blog": "open the author's blog",
             "help.clear": "clear the terminal",
             "help.contacts": "check contacts",
             "help.cowsay": "display a cowsay-style message",
@@ -72,18 +71,13 @@ function startTerminal() {
             "commandNotFound": "Command not found",
             "contacts.title": "Contacts",
             "projects.title": "Featured projects",
-            "projects.arpic.title": "Interactive image labels",
-            "projects.arpic.shortTitle": "Interactive labels",
-            "projects.arpic.description": "A JavaScript plugin to add interactive tags/labels to images. Lightweight, customizable (HTML5/CSS3)",
-            "projects.arraySorting.title": "Array sorting",
-            "projects.arraySorting.shortTitle": "Array sorting",
-            "projects.arraySorting.description": "Interactive visualization of sorting algorithms using JavaScript and HTML Canvas",
-            "projects.sudoku.title": "Sudoku",
-            "projects.sudoku.shortTitle": "Sudoku",
-            "projects.sudoku.description": "Implementation of the game Sudoku in JavaScript with the ability to choose 6 levels of complexity and check solutions (JS / CSS / HTML)",
+            "projects.claudeStarred.description": "Bookmarks for Claude Code sessions: starred sessions survive automatic cleanup and open from a small tree in the terminal (Go)",
+            "projects.pintArtisan.description": "Run Laravel Pint via Artisan with php artisan pint, supporting all its arguments and flags (PHP / Laravel)",
+            "projects.larabuilder.description": "A package for programmatically modifying PHP classes in Laravel projects: properties, methods, imports, traits (PHP / Laravel)",
+            "projects.projectCreate.description": "Create a new Laravel project with a single command: a fully Dockerized environment that needs only Docker and cURL locally (Shell / Docker)",
             "about.greeting": "Hi! My name is Artyom Osepyan!",
-            "about.role": "I am a <b>Full-stack developer</b>, with extensive experience building web applications.",
-            "about.values": "I love it when the code is clean, the interface is intuitive, and the backend runs like a Swiss watch.",
+            "about.role": "I am a <b>backend developer</b> and a contributor to Laravel and open-source packages.",
+            "about.experience": "I have extensive experience building web applications and server-side logic. I keep learning new approaches and technologies.",
             "language.en": "English",
             "language.ru": "Russian",
         },
@@ -99,10 +93,13 @@ function startTerminal() {
         {name: "E-mail", value: "artengin.osepyan@gmail.com", url: "mailto:artengin.osepyan@gmail.com"},
     ];
 
+    const blogUrl = "https://artengin.github.io/blog/";
+
     const projectList = [
-        {key: "arpic", url: "https://artengin.github.io/arpic-template/"},
-        {key: "arraySorting", url: "https://artengin.github.io/array-sorting/"},
-        {key: "sudoku", url: "https://artengin.github.io/sudoku/"},
+        {key: "claudeStarred", name: "claude-starred", url: "https://github.com/artengin/claude-starred"},
+        {key: "pintArtisan", name: "laravel-pint-artisan", url: "https://github.com/artengin/laravel-pint-artisan"},
+        {key: "larabuilder", name: "larabuilder", url: "https://github.com/RonasIT/larabuilder"},
+        {key: "projectCreate", name: "laravel-project-create", url: "https://github.com/RonasIT/laravel-project-create"},
     ];
 
     let lang;
@@ -337,7 +334,7 @@ function startTerminal() {
         <p>${t("projects.title")}:</p>
         ${projectList.map((project, i) => `
         <div>
-            <p><b class="styleTwo" data-command="projects go ${i + 1}">${i + 1}. ${t(`projects.${project.key}.title`)}</b></p>
+            <p><b class="styleTwo" data-command="projects go ${i + 1}">${i + 1}. ${project.name}</b></p>
             <p>${t(`projects.${project.key}.description`)}</p>
         </div>`).join("")}
         <p>${t("usage")}: projects go &lt;project-number&gt; </p>
@@ -363,6 +360,11 @@ function startTerminal() {
         displayCommand(`projects go ${number}`);
     }
 
+    function blog() {
+        window.open(blogUrl, '_blank');
+        displayCommand('blog');
+    }
+
     function about() {
         const about = document.createElement('div');
         about.classList.add("command-div");
@@ -371,7 +373,7 @@ function startTerminal() {
         ${commandHistory('about')}
         <p>${t("about.greeting")}</p>
         <p>${t("about.role")}</p>
-        <p>${t("about.values")}</p>
+        <p>${t("about.experience")}</p>
         `;
        terminal.appendChild(about);
     }
@@ -425,6 +427,7 @@ function startTerminal() {
 
     const topCommands = [
         {name: "about", run: about},
+        {name: "blog", run: blog},
         {name: "clear", run: clear},
         {name: "contacts", run: contacts},
         {name: "cowsay", run: cowsay},
@@ -536,7 +539,7 @@ function startTerminal() {
                 }
 
                 if (currentValue === "projects go ") {
-                    output.innerHTML = projectList.map((project, i) => `<span>${i + 1}.${t(`projects.${project.key}.shortTitle`)}</span>`).join("  ");
+                    output.innerHTML = projectList.map((project, i) => `<span>${i + 1}.${project.name}</span>`).join("  ");
                     return;
                 }
                 if (currentValue === "language set ") {
