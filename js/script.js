@@ -308,7 +308,7 @@ function startTerminal() {
         themes.classList.add("themes");
         themes.innerHTML = `
         ${commandHistory('themes')}
-        <span class="pre">${themeNames.map(name => `<span data-command="themes set ${name}">${name}</span>`).join("  ")}</span>
+        <span class="pre">${themeNames.map(name => `<span class="styleTwo" data-command="themes set ${name}">${name}</span>`).join("  ")}</span>
         <p>${t("usage")}: themes set &lt;theme-name&gt; </p>
         <p>${t("example")}: themes set espresso</p>
         `;
