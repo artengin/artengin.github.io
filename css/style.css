@@ -147,6 +147,10 @@ body {
 .theme-swatch i:nth-child(3) {background: var(--accent-one);}
 .theme-swatch i:nth-child(4) {background: var(--accent-two);}
 
+.not-found-face {
+    margin-bottom: 0;
+}
+
 .projects div {
     margin: 30px 0;
 }
