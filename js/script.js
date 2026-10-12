@@ -10,7 +10,7 @@ function startTerminal() {
         ru: {
             "page.title": "Портфолио Терминал Осепян Артема",
             "page.description": "Интерактивный терминал-портфолио, имитирует работу командной строки с набором пользовательских команд для навигации.",
-            "welcome.greeting": "Добро пожаловать на мой сайт портфолио. (Версия 1.0.1)",
+            "welcome.greeting": "Добро пожаловать на мой сайт портфолио. (Версия 1.1.0)",
             "welcome.source": "Исходный код этого проекта можно посмотреть в репозитории на",
             "welcome.help": "Чтобы посмотреть список доступных команд, введите",
             "help.about": "об авторе",
@@ -50,7 +50,7 @@ function startTerminal() {
         en: {
             "page.title": "Portfolio Terminal of Artyom Osepyan",
             "page.description": "An interactive terminal-style portfolio that simulates a command-line interface with custom navigation commands.",
-            "welcome.greeting": "Welcome to my portfolio website. (Version 1.0.1)",
+            "welcome.greeting": "Welcome to my portfolio website. (Version 1.1.0)",
             "welcome.source": "The source code for this project is available in the repository on",
             "welcome.help": "For a list of available commands, type",
             "help.about": "about the author",
@@ -308,7 +308,7 @@ function startTerminal() {
         themes.classList.add("themes");
         themes.innerHTML = `
         ${commandHistory('themes')}
-        <span class="pre">${themeNames.map(name => `<span class="styleTwo" data-command="themes set ${name}">${name}</span>`).join("  ")}</span>
+        <div class="theme-list">${themeNames.map(name => `<span data-command="themes set ${name}"><span class="theme-swatch" data-swatch="${name}" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="styleTwo">${name}</span></span>`).join("")}</div>
         <p>${t("usage")}: themes set &lt;theme-name&gt; </p>
         <p>${t("example")}: themes set espresso</p>
         `;
@@ -387,6 +387,7 @@ function startTerminal() {
         notFound.classList.add("command-div");
         notFound.innerHTML = `
         ${commandHistory(inValue)}
+        <p class="not-found-face" aria-hidden="true">¯\\_(ツ)_/¯</p>
         <p>${t("commandNotFound")}: ${escapeHtml(inValue)}</p>`;
         terminal.appendChild(notFound);
     }
