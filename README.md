@@ -1,25 +1,24 @@
 # Terminal Portfolio  
 
-An interactive terminal-style portfolio designed as an alternative to traditional websites.  
-The project mimics a command-line interface with custom navigation commands.  
+An interactive terminal-style portfolio that mimics a command-line interface.  
 
-#### Live demo: [DEMO](https://artengin.github.io/)  
+#### Live demo: [artengin.github.io](https://artengin.github.io/) · Blog: [artengin.github.io/blog](https://artengin.github.io/blog/)  
 
 ## Features  
 
-- Full terminal emulation with autocompletion (Tab)  
-- Command history (Up/Down arrows)  
-- Dual-language support (English/Russian)  
-- 6 customizable color themes  
-- Commands for viewing info, projects and contacts  
-- Interactive elements (cowsay, theme switching)  
-- Responsive design  
+- Commands for viewing info, projects, contacts and the blog (type `help`)  
+- Tab autocompletion, Up/Down command history, clickable commands  
+- English/Russian interface and 6 color themes  
+- Pure JavaScript, HTML and CSS, no dependencies  
 
-## Technologies  
+## Run locally  
 
-- Pure JavaScript (ES6)  
-- HTML5/CSS3  
+```bash
+python3 -m http.server
+```
 
-## Usage  
+Opening `index.html` directly does not work: the welcome block is loaded with `fetch`.  
 
-Type `help` to view available commands. Supports Tab autocompletion.  
+## Editing content  
+
+Projects, contacts, themes and texts are defined as data in `js/script.js`: `projectList`, `contactLinks`, `themeNames` and the `translations` dictionary.  
