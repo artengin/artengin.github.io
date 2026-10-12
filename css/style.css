@@ -123,6 +123,30 @@ body {
     margin: 0 0 15px;
 }
 
+.theme-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    margin: 0 0 15px;
+}
+
+.theme-swatch {
+    display: inline-flex;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.theme-swatch i {
+    width: 0.6em;
+    height: 0.6em;
+    border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+}
+
+.theme-swatch i:nth-child(1) {background: var(--background);}
+.theme-swatch i:nth-child(2) {background: var(--text);}
+.theme-swatch i:nth-child(3) {background: var(--accent-one);}
+.theme-swatch i:nth-child(4) {background: var(--accent-two);}
+
 .projects div {
     margin: 30px 0;
 }
