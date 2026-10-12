@@ -43,8 +43,16 @@ function startTerminal() {
     setTheme();
 
 
+    function escapeHtml(value) {
+        return value
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;");
+    }
+
     function commandHistory(value){
-        return `<span><span class="styleOne">guest</span>@<span class="styleTwo">terminal.artengin</span>:~$ <span class="history-value">${value}</span></span>`;
+        return `<span><span class="styleOne">guest</span>@<span class="styleTwo">terminal.artengin</span>:~$ <span class="history-value">${escapeHtml(value)}</span></span>`;
     }
 
     function displayCommand(value){
@@ -161,7 +169,7 @@ function startTerminal() {
         history.classList.add("command-history");
         let result = commandHistory("history");
         for (let i=0; i < queryHistory.length; i++) {
-            result += `<p>${queryHistory[i]}</p>`;
+            result += `<p>${escapeHtml(queryHistory[i])}</p>`;
         }
         history.innerHTML = result;
         terminal.appendChild(history); 
@@ -239,7 +247,7 @@ function startTerminal() {
         cowsay.innerHTML = `
         ${commandHistory("cowsay " + value)}
         <pre> ${"_".repeat(value.length + 2)}
-&lt; ${value} &gt;
+&lt; ${escapeHtml(value)} &gt;
  ${"-".repeat(value.length + 2)}</pre>
         ${cowTemplate}`;
         terminal.appendChild(cowsay);
@@ -347,7 +355,7 @@ function startTerminal() {
         notFound.classList.add("command-div");
         notFound.innerHTML = `
         ${commandHistory(inValue)}
-        <p>${lang == "ru" ? "Команда не найдена" : "Command not found"}: ${inValue}</p>`;
+        <p>${lang == "ru" ? "Команда не найдена" : "Command not found"}: ${escapeHtml(inValue)}</p>`;
         terminal.appendChild(notFound); 
     }
 
