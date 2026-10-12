@@ -10,7 +10,7 @@ function startTerminal() {
         ru: {
             "page.title": "Портфолио Терминал Артёма Осепяна",
             "page.description": "Интерактивный терминал-портфолио, имитирует работу командной строки с набором пользовательских команд для навигации.",
-            "welcome.greeting": "Добро пожаловать на мой сайт портфолио. (Версия 1.2.0)",
+            "welcome.greeting": "Добро пожаловать на мой сайт портфолио. (Версия 1.2.1)",
             "welcome.source": "Исходный код этого проекта можно посмотреть в репозитории на",
             "welcome.blog": "Чтобы открыть мой блог, введите",
             "welcome.help": "Чтобы посмотреть список доступных команд, введите",
@@ -47,7 +47,7 @@ function startTerminal() {
         en: {
             "page.title": "Portfolio Terminal of Artyom Osepyan",
             "page.description": "An interactive terminal-style portfolio that simulates a command-line interface with custom navigation commands.",
-            "welcome.greeting": "Welcome to my portfolio website. (Version 1.2.0)",
+            "welcome.greeting": "Welcome to my portfolio website. (Version 1.2.1)",
             "welcome.source": "The source code for this project is available in the repository on",
             "welcome.blog": "To open my blog, type",
             "welcome.help": "For a list of available commands, type",
@@ -299,13 +299,17 @@ function startTerminal() {
         terminal.appendChild(cowsay);
     }
 
+    function themeSwatch(name) {
+        return `<span class="theme-swatch" data-swatch="${name}" aria-hidden="true"><i></i><i></i><i></i><i></i></span>`;
+    }
+
     function themes() {
         const themes = document.createElement('div');
         themes.classList.add("command-div");
         themes.classList.add("themes");
         themes.innerHTML = `
         ${commandHistory('themes')}
-        <div class="theme-list">${themeNames.map(name => `<span data-command="themes set ${name}"><span class="theme-swatch" data-swatch="${name}" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="styleTwo">${name}</span></span>`).join("")}</div>
+        <div class="theme-list">${themeNames.map(name => `<span data-command="themes set ${name}">${themeSwatch(name)}<span class="styleTwo">${name}</span></span>`).join("")}</div>
         <p>${t("usage")}: themes set &lt;theme-name&gt; </p>
         <p>${t("example")}: themes set espresso</p>
         `;
@@ -529,7 +533,7 @@ function startTerminal() {
                 }
 
                 if (currentValue === "themes set ") {
-                    output.innerHTML = themeNames.map(name => `<span>${name}</span>`).join("  ");
+                    output.innerHTML = themeNames.map(name => `<span>${themeSwatch(name)}${name}</span>`).join("  ");
                     return;
                 }
 

@@ -190,7 +190,7 @@ form input {
     max-width: 600px;
 }
 
-#terminal-output span{
+#terminal-output > span{
     margin-right: 20px;
 }
 .container {
