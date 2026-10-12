@@ -177,9 +177,19 @@ form input {
     width: 60%;
 }
 
-.welcome-name {
-    font-size: 0.7em;
+.welcome-title {
     margin: 0 0 40px;
+}
+
+.welcome-name {
+    margin: 0;
+    font-size: 0.7em;
+}
+
+.welcome-role {
+    margin: 10px 0 0;
+    font-weight: 700;
+    font-style: italic;
 }
 
 .welcome-img {
@@ -217,6 +227,8 @@ form .input {
 @media (max-width: 1200px){
     .welcome-name {
         font-size: 0.6em;
+    }
+    .welcome-title {
         margin: 0 0 30px;
     }
     .welcome-img {
@@ -286,14 +298,18 @@ form .input {
 
 @media (max-width: 550px) {
     .welcome-name {
-        font-size: 0.5em;  
+        font-size: 0.5em;
+    }
+    .welcome-title {
         margin: 0 0 20px;
     }
 }
 
 @media (max-width: 460px) {
     .welcome-name {
-        font-size: 0.4em;  
+        font-size: 0.4em;
+    }
+    .welcome-title {
         margin: 0 0 10px;
     }
 }
