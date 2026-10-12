@@ -95,8 +95,8 @@ function startTerminal() {
 
     const contactLinks = [
         {name: "Github", value: "https://github.com/artengin/", url: "https://github.com/artengin/"},
-        {name: "E-mail", value: "art@osepyan.ru", url: "mailto:art@osepyan.ru"},
         {name: "Telegram", value: "https://t.me/artengin", url: "https://t.me/artengin"},
+        {name: "E-mail", value: "artengin.osepyan@gmail.com", url: "mailto:artengin.osepyan@gmail.com"},
     ];
 
     const projectList = [
