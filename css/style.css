@@ -30,53 +30,61 @@ p {margin: 7px 0;}
     outline: none; 
 }
 
-body#dark {
-    background: rgb(29, 42, 53);
-    color: rgb(203, 213, 225);
+#dark,
+[data-swatch="dark"] {
+    --background: rgb(29, 42, 53);
+    --text: rgb(203, 213, 225);
+    --accent-one: rgb(255, 157, 0);
+    --accent-two: rgb(5, 206, 145);
 }
-#dark .styleOne{color: rgb(255, 157, 0);}
-#dark .styleTwo {color: rgb(5, 206, 145);}
-#dark #terminal-input {caret-color:rgb(5, 206, 145);}
 
-body#light {
-    background: rgb(239, 243, 243);
-    color: rgb(51, 65, 85);
+#light,
+[data-swatch="light"] {
+    --background: rgb(239, 243, 243);
+    --text: rgb(51, 65, 85);
+    --accent-one: rgb(176, 84, 0);
+    --accent-two: rgb(2, 116, 116);
 }
-#light .styleOne{color: rgb(255, 157, 0);}
-#light .styleTwo {color: rgb(2, 116, 116);}
-#light #terminal-input {caret-color:rgb(2, 116, 116);}
 
-body#blue-matrix {
-    background: rgb(16, 17, 22);
-    color: rgb(255, 255, 255);
+#blue-matrix,
+[data-swatch="blue-matrix"] {
+    --background: rgb(16, 17, 22);
+    --text: rgb(255, 255, 255);
+    --accent-one: rgb(96, 253, 255);
+    --accent-two: rgb(0, 255, 156);
 }
-#blue-matrix .styleOne{color: rgb(96, 253, 255);}
-#blue-matrix .styleTwo {color: rgb(0, 255, 156);}
-#blue-matrix #terminal-input {caret-color:rgb(0, 255, 156);}
 
-body#espresso {
-    background: rgb(50, 50, 50);
-    color: rgb(247, 247, 247);
+#espresso,
+[data-swatch="espresso"] {
+    --background: rgb(50, 50, 50);
+    --text: rgb(247, 247, 247);
+    --accent-one: rgb(165, 194, 96);
+    --accent-two: rgb(225, 228, 139);
 }
-#espresso .styleOne{color: rgb(165, 194, 96);}
-#espresso .styleTwo {color: rgb(225, 228, 139);}
-#espresso #terminal-input {caret-color:rgb(225, 228, 139);}
 
-body#green-goblin {
-    background: rgb(0, 0, 0);
-    color: rgb(1, 255, 0);
+#green-goblin,
+[data-swatch="green-goblin"] {
+    --background: rgb(0, 0, 0);
+    --text: rgb(1, 255, 0);
+    --accent-one: rgb(4, 165, 0);
+    --accent-two: rgb(229, 229, 0);
 }
-#green-goblin .styleOne{color: rgb(4, 165, 0);}
-#green-goblin .styleTwo {color: rgb(229, 229, 0);}
-#green-goblin #terminal-input {caret-color:rgb(229, 229, 0);}
 
-body#ubuntu {
-    background: rgb(45, 9, 34);
-    color: rgb(255, 255, 255);
+#ubuntu,
+[data-swatch="ubuntu"] {
+    --background: rgb(48, 10, 36);
+    --text: rgb(255, 255, 255);
+    --accent-one: rgb(138, 226, 52);
+    --accent-two: rgb(114, 159, 207);
 }
-#ubuntu .styleOne{color: rgb(128, 217, 50);}
-#ubuntu .styleTwo {color: rgb(128, 217, 50);}
-#ubuntu #terminal-input {caret-color:rgb(128, 217, 50);}
+
+body {
+    background: var(--background);
+    color: var(--text);
+}
+.styleOne {color: var(--accent-one);}
+.styleTwo {color: var(--accent-two);}
+#terminal-input {caret-color: var(--accent-two);}
 
 .command-list p {
     margin: 3px 0;
@@ -113,6 +121,34 @@ body#ubuntu {
 .themes .pre {
     display: block;
     margin: 0 0 15px;
+}
+
+.theme-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    margin: 0 0 15px;
+}
+
+.theme-swatch {
+    display: inline-flex;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.theme-swatch i {
+    width: 0.6em;
+    height: 0.6em;
+    border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+}
+
+.theme-swatch i:nth-child(1) {background: var(--background);}
+.theme-swatch i:nth-child(2) {background: var(--text);}
+.theme-swatch i:nth-child(3) {background: var(--accent-one);}
+.theme-swatch i:nth-child(4) {background: var(--accent-two);}
+
+.not-found-face {
+    margin-bottom: 0;
 }
 
 .projects div {
